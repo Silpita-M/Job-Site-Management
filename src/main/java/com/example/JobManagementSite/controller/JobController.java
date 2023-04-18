@@ -57,8 +57,6 @@ public class JobController {
 		jb.setJobQuali(job.getJobQuali());
 		jb.setJobLoc(job.getJobLoc());
 		jb.setJobSalary(job.getJobSalary());
-		jb.setJobCreated(job.getJobCreated());
-		jb.setJobUpdated(job.getJobUpdated());
 		
 		jrepo.save(jb);
 		return jb;
@@ -75,7 +73,7 @@ public class JobController {
 	
 	
 	
-	@PostMapping("jobs/{id}/applications")
+	@PostMapping("/jobs/{id}/applications")
 	public Application createApplication(@RequestBody Application app, @PathVariable int id)
 	{
 		Job jb=jrepo.findById(id).orElse(new Job());
@@ -85,19 +83,20 @@ public class JobController {
 	}
 	
 	
-	@GetMapping("jobs/{id}/applications")
-	public Application getByAppId(@PathVariable int id )
+	@GetMapping("/jobs/{id}/applications")
+	public List<Application> getApplicationsByJobId(@PathVariable int id )
 	{
-		return arepo.findById(id).orElse(new Application());
+		Job job = jrepo.findById(id).orElse(new Job());
+		return arepo.findAllByJob(job);
 	}
 	
-	@GetMapping("jobs/applications/{appId}")
+	@GetMapping("/jobs/applications/{appId}")
 	public Application getApplication( @PathVariable int appId)
 	{
 		return arepo.findById(appId).orElse(new Application());
 	}
 	
-	@PutMapping("jobs/applications/{id}/status")
+	@PutMapping("/jobs/applications/{id}/status")
 	public Application updateStatus(@RequestBody Application app, @PathVariable int id)
 	{
 		Application ap=arepo.findById(id).orElse(new Application());
@@ -105,4 +104,5 @@ public class JobController {
 		arepo.save(app);
 		return app;
 	}
+	
 }

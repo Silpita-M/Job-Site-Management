@@ -1,6 +1,5 @@
 package com.example.JobManagementSite.model;
 
-import java.sql.Timestamp;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -36,10 +35,6 @@ public class JobSeeker {
 	
 	@Column(nullable=false)
 	private String majorSkill;
-	
-	private Timestamp createdAt;
-	
-	private Timestamp updatedAt;
 
 	public int getJobSeekerId() {
 		return jobSeekerId;
@@ -95,22 +90,6 @@ public class JobSeeker {
 
 	public void setMajorSkill(String majorSkill) {
 		this.majorSkill = majorSkill;
-	}
-
-	public Timestamp getCreatedAt() {
-		return createdAt;
-	}
-
-	public void setCreatedAt(Timestamp createdAt) {
-		this.createdAt = createdAt;
-	}
-
-	public Timestamp getUpdatedAt() {
-		return updatedAt;
-	}
-
-	public void setUpdatedAt(Timestamp updatedAt) {
-		this.updatedAt = updatedAt;
 	}
 	
 	
